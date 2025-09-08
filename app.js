@@ -1,4 +1,4 @@
-require("dotenv").config(); //REQUIRE DOTENV TO USE ENV VARIABLESq
+require("dotenv").config(); //REQUIRE DOTENV TO USE ENV VARIABLES
 
 const express = require("express"); //REQUIRE EXPRESS
 const app = express();
