@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refer And Earn</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon"
+        href="https://ik.imagekit.io/7de5cntkw/1692626704665-photoaidcom-cropped%20(1).jpeg?updatedAt=1738048156918"
+        type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/buttons-the-bear" rel="stylesheet">
+</head>
+
+<body>
+      <div class="firstnav">
+        <div class="nav-part phone"><i class="fas fa-phone-alt"></i> (+7) 1-811-234-5678</div>
+        <div class="nav-part email"><i class="fas fa-envelope"></i> info@mail.com</div>
+        <div class="nav-part location"><i class="fas fa-map-marker-alt"></i> 199 Park Ave, San Jose, CA 95110, United
+            States
+        </div><br>
+        <div class="nav-part social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+
+        <div class="nav-part members">
+            <button class="member-btn">
+                Members <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown">
+                <a href="life-member.html">Life Member</a>
+                <a href="premium-member.html">Premium Member</a>
+                <a href="corporate-member.html">Corporate Member</a>
+                <a href="assiociate-member.html">Associate Member</a>
+            </div>
+        </div>
+          
+        <div class="nav-part email">
+            <i class="fas fa-question-circle"></i>
+            <a href="faq.html" style="text-decoration: none; color: inherit;">FAQ</a>
+        </div>
+
+    </div>
+    <div class="navbar">
+        <div class="logo">
+            <a href="">
+                <img src="https://ik.imagekit.io/7de5cntkw/nimtt-newlogo-dOqN8yQvbaHopnp3.avif?updatedAt=1746554872837"
+                    alt="Logo">
+        </div>
+        <ul class="menu">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li class="dropdown">
+                <a href="#">Courses
+                    <img src="https://ik.imagekit.io/7de5cntkw/down-arrow.png?updatedAt=1746556476005"
+                        class="dropdown-arrow" alt="arrow">
+                </a>
+                <div class="dropdown-content" id="coursedropdown">
+                    <!-- Row 1 -->
+                    <a href="#">Web Development</a>
+                    <a href="#">Data Science</a>
+                    <a href="#">Graphic Design</a>
+                    <a href="#">Digital Marketing</a>
+                    <a href="#">UI/UX Design</a>
+                    <!-- Row 2 -->
+                    <a href="#">Cybersecurity</a>
+                    <a href="#">AI &amp; ML</a>
+                    <a href="#">Cloud Computing</a>
+                    <a href="#">DevOps</a>
+                    <a href="#">Blockchain</a>
+                    <!-- Row 3 -->
+                    <a href="#">Business Analytics</a>
+                    <a href="#">Project Management</a>
+                    <a href="#">Photography</a>
+                    <a href="#">Video Editing</a>
+                    <a href="#">Game Development</a>
+                    <!-- Row 4 -->
+                    <a href="#">Mobile App Dev</a>
+                    <a href="#">Network Administration</a>
+                    <a href="#">IT Support</a>
+                    <a href="#">Language Learning</a>
+                    <a href="#">Music Production</a>
+                    <!-- Row 5 (add more or leave blank if only 20) -->
+                    <a href="#">Creative Writing</a>
+                    <a href="#">Public Speaking</a>
+                    <a href="#">Data Visualization</a>
+                    <a href="#">Entrepreneurship</a>
+                    <a href="#">Ethical Hacking</a>
+                    <!-- …up to 30 items total… -->
+                </div>
+            </li>
+
+
+            <li class="dropdown">
+                <a href="#">Collaboration
+                    <img src="https://ik.imagekit.io/7de5cntkw/down-arrow.png?updatedAt=1746556476005"
+                        class="dropdown-arrow" alt="arrow">
+                </a>
+                <div class="dropdown-content">
+                    <a href="autonomous-course.html">Autonomous</a>
+                    <a href="indian-university-course.html">Indian University</a>
+                    <a href="foreign-university-course.html">Foreign University</a>
+                    <a href="foco-model.html">FOCO Model</a>
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Student Zone
+                    <img src="https://ik.imagekit.io/7de5cntkw/down-arrow.png?updatedAt=1746556476005"
+                        class="dropdown-arrow" alt="arrow">
+                </a>
+                <div class="dropdown-content">
+                    <a href="student-loan.html">Student Loan </a>
+                    <a href="student-sponsorship.html">Student Sponsorship</a>
+                    <a href="rules.html">Rules Of Admission</a>
+                    <a href="student-scholarship.html">Student Scholarship</a>
+                    <a href="facilities.html">Student Facilities</a>
+                </div>
+            </li>
+
+            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="#">Blog</a></li>
+
+            <li class="dropdown login-dropdown">
+                <button class="log-in">
+                    Login
+                    <img src="https://ik.imagekit.io/7de5cntkw/down-arrow.png?updatedAt=1746556476005"
+                        class="dropdown-arrow" alt="arrow">
+                </button>
+                <div class="dropdown-content" id="logindropdown">
+                    <a href="student-login.html">Student Login</a>
+                    <a href="#">Center Login</a>
+                    <a href="#">Staff Login</a>
+                    <a href="#">Admin Login</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="footer">
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Column 1 -->
+                    <div class="footer-column">
+                        <h3>Academic Services</h3>
+                        <ul>
+                            <li><a href="#" class="hover-underline">Authorised Center</a></li>
+                            <li><a href="#" class="hover-underline">Authorised Career Advisor</a></li>
+                            <li><a href="join-as-PhD-supervisor.html" class="hover-underline">Join as PhD Supervisor</a>
+                            </li>
+                            <li><a href="join-faculty.html" class="hover-underline">Join Faculty</a></li>
+                        </ul>
+                    </div>
+                    <!-- Column 2 -->
+                    <div class="footer-column">
+                        <h3>Engage with Us</h3>
+                        <ul>
+                            <li><a href="refer-and-earn.html" class="hover-underline">Refer and Earn</a></li>
+                            <li><a href="pulbish-your-article.html" class="hover-underline">Publish Your Article</a></li>
+                            <li><a href="#" class="hover-underline">Celebrate with Us</a></li>
+                            <li><a href="#" class="hover-underline">Blog</a></li>
+                            <li><a href="#" class="hover-underline">Festival Offer</a></li>
+                        </ul>
+                    </div>
+                    <!-- Column 3 -->
+                    <div class="footer-column">
+                        <h3>Other Website</h3>
+                        <ul>
+                            <li><a href="#" class="hover-underline">NIMTT</a></li>
+                            <li><a href="#" class="hover-underline">NIMTT.com</a></li>
+                            <li><a href="#" class="hover-underline">NIMTT.org</a></li>
+                            <li><a href="#" class="hover-underline">NIMTT.in</a></li>
+                            <li><a href="#" class="hover-underline">NIMTT.net</a></li>
+                    </div>
+                    <!-- Column 4 -->
+                    <div class="footer-column">
+                        <h3>Quick links</h3>
+                        <ul>
+                            <li><a href="terms-and-condition.html" class="hover-underline">Privacy Policy</a></li>
+                            <li><a href="terms-and-condition.html" class="hover-underline">Terms of Service</a></li>
+                            <li><a href="terms-and-condition.html" class="hover-underline">Refund Policy</a></li>
+                            <li><a href="#" class="hover-underline">Sitemap</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 5 -->
+                    <div class="footer-column">
+                        <h3>Follow Us</h3>
+                        <div class="icons-container">
+                            <div class="social-icons">
+                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-threads"></i></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                            <li><a href="mailto:info@example.com">info@example.com</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="payment-icons">
+                        <a href="https://easebuzz.in/pay/NIMTTDo5SQ" target="_blank">
+                            <img src="https://res.cloudinary.com/dzwk8diyi/image/upload/v1748686928/Easebuzz_mzpujx.jpg"
+                                alt="Easebuzz Payment" />
+                        </a>
+                    </div>
+                    <div class="payment-icons">
+                        <a href="https://razorpay.me/@nimttcomputertechnologyprivat" target="_blank">
+                            <img src="https://res.cloudinary.com/dzwk8diyi/image/upload/v1748686928/RAZORPAY_ay4nfb.jpg"
+                                alt="RAZORPAY Payment" />
+                        </a>
+                        <p class="payment-caption">Domestic & International Payment</p>
+                    </div>
+
+                </div>
+                <div class="footer-bottom">
+                    <p style="color: rgb(255, 255, 255);">© 2025 Nimtt Pvt Ltd. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+   
+   
+    </div>
+
+
+
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.querySelector(".menu");
+        let menuOpen = false;
+
+        // Smooth Hamburger toggle using GSAP
+        hamburger.addEventListener("click", () => {
+            if (!menuOpen) {
+                menu.classList.add("active");
+                gsap.fromTo(menu,
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+                );
+            } else {
+                gsap.to(menu, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.4,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        menu.classList.remove("active");
+                    }
+                });
+            }
+            menuOpen = !menuOpen;
+        });
+
+        // Logo animation
+        gsap.from(".navbar .logo img", {
+            duration: 1,
+            x: -50,
+            opacity: 0,
+            ease: "power3.out"
+        });
+
+        // Menu items animation (on initial load only)
+        gsap.from(".menu li", {
+            duration: 1,
+            y: -20,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    </script>
+</body>
+
+</html>

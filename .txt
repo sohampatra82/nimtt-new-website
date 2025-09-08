@@ -1,0 +1,172 @@
+.heading-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-underline::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 4px;
+  background-color: #B11925;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.fifthsection {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.fifthsection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: 600;
+}
+
+.departments-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.departments-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  padding: 15px;
+  background-color:#F9F9F9;
+  /* border: 2px solid #ddd;
+  border-radius: 8px; */
+  transition: all 0.3s ease;
+}
+
+.departments-toggle:hover {
+  /* background-color: #f0f0f0; */
+  color: #B11925;
+}
+
+.departments-toggle img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.departments-toggle.active img {
+  transform: rotate(180deg);
+}
+
+.departments-dropdown {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  max-width: 1000px; /* Limit the width to center the content */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.departments-dropdown.active {
+  display: flex;
+}
+
+.department {
+  flex: 1;
+  text-align: center; /* Center the content within each department */
+  min-width: 0; /* Prevent flex items from overflowing */
+}
+
+.department-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the header text and arrow */
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+.department-header:hover {
+  color: #B11925;
+}
+
+.department-header img {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+.courses-list {
+  display: none;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.courses-list.active {
+  display: block;
+}
+
+.courses-list li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.courses-list li:hover {
+  color: #B11925;
+}
+
+@media (max-width: 768px) {
+  .departments-dropdown {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%; /* Full width on mobile */
+  }
+
+  .department {
+    padding: 10px 0;
+  }
+
+  .fifthsection h2 {
+    font-size: 2rem;
+  }
+
+  .departments-toggle {
+    font-size: 1.2rem;
+  }
+
+  .department-header {
+    font-size: 1rem;
+  }
+
+  .courses-list li {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+
+
+
+

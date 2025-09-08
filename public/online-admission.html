@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admission Form</title>
+    <link rel="shortcut icon"
+        href="https://ik.imagekit.io/7de5cntkw/1692626704665-photoaidcom-cropped%20(1).jpeg?updatedAt=1738048156918"
+        type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f5f7fa;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .admission {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .header .company-details {
+            text-align: right;
+        }
+
+        .header .company-details h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a3c34;
+        }
+
+        .header .company-details p {
+            margin: 6px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #1a3c34;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            background-color: #fafafa;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #3c1a1a;
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .radio-group,
+        .select-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .radio-group input,
+        .select-group input {
+            margin-right: 5px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 30px auto 0;
+            background-color: #1a3c34;
+            color: white;
+            padding: 12px 60px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #15332d;
+        }
+
+        .note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .account-details {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .account-details p {
+            margin: 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            .admission {
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+            }
+
+            .header img {
+                max-width: 120px;
+                margin-bottom: 10px;
+            }
+
+            .header .company-details {
+                text-align: center;
+            }
+
+            .header .company-details h1 {
+                font-size: 20px;
+            }
+
+            .header .company-details p {
+                font-size: 12px;
+                margin: 4px 0;
+            }
+
+            h2 {
+                font-size: 16px;
+                padding-bottom: 8px;
+                margin-bottom: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            input[type="date"],
+            select,
+            textarea {
+                padding: 8px;
+                font-size: 12px;
+                border-radius: 4px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .radio-group,
+            .select-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .submit-btn {
+                padding: 10px 30px;
+                font-size: 14px;
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .note {
+                font-size: 11px;
+                margin-top: 10px;
+            }
+
+            .account-details {
+                padding: 15px;
+                font-size: 12px;
+            }
+
+            .account-details p {
+                margin: 6px 0;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin-bottom: 15px;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admission">
+        <!-- Header Section -->
+        <div class="header">
+            <img src="https://ik.imagekit.io/7de5cntkw/nimtt-newlogo-dOqN8yQvbaHopnp3.avif?updatedAt=1746554872837"
+                alt="Logo">
+            <div class="company-details">
+                <h1>National Institute Of Management <br> & Technical Training</h1>
+                <p>Contact: +91-1234567890</p>
+                <p>Email: info@nimtt.co.in</p>
+                <p>Address: Kolkata, West Bengal, India</p>
+            </div>
+        </div>
+
+        <!-- Admission Form -->
+    <form method="post" action="/online-admission">
+        <h2>Course/Programme Details</h2>
+        <div class="form-group">
+            <label for="programme">Programme Name *</label>
+            <select id="programme" name="programme" required>
+                <option value="">Select</option>
+                <option value="iti-course">ITI</option>
+                <option value="diploma-engineering">Diploma in Engineering</option>
+                <option value="btech">B.Tech</option>
+                <option value="integrated-btech">Integrated B.Tech</option>
+                <option value="mtech">M.Tech</option>
+                <option value="bba">BBA</option>
+                <option value="mba">MBA</option>
+                <option value="bca">BCA</option>
+                <option value="mca">MCA</option>
+                <option value="bsc">B.Sc</option>
+                <option value="bsc-computer-science">B.Sc in Computer Science</option>
+                <option value="bsc-it">B.Sc IT</option>
+                <option value="msc-it">M.Sc IT</option>
+                <option value="msc-computer-science">M.Sc in Computer Science</option>
+                <option value="ba">BA</option>
+                <option value="bcom">B.Com</option>
+                <option value="pg-diploma">PG Diploma</option>
+                <option value="llb">LLB</option>
+                <option value="llm">LLM</option>
+                <option value="bsc-nursing">B.Sc Nursing</option>
+                <option value="gnm">GNM (General Nursing & Midwifery)</option>
+                <option value="bfa">BFA</option>
+                <option value="mfa">MFA</option>
+                <option value="bsw">BSW (Bachelor of Social Work)</option>
+                <option value="mfw">MFW</option>
+                <option value="bsc">B.Sc (General)</option>
+                <option value="msc">M.Sc (General)</option>
+                <option value="msc-nursing">M.Sc Nursing</option>
+                <option value="diploma-nursing-assistant">Diploma in Nursing Assistant</option>
+                <option value="post-basic-bsc-nursing">Post Basic B.Sc Nursing</option>
+                <option value="bmlt">BMLT (Bachelor in Medical Lab Technology)</option>
+                <option value="mmlt">MMLT</option>
+                <option value="boot">BOOT</option>
+                <option value="moot">MOOT</option>
+                <option value="bnys">BNYS</option>
+                <option value="diploma-homeo-pharma">Diploma in Homeo Pharmacy</option>
+                <option value="bsc-homeo-pharma">B.Sc in Homeo Pharmacy</option>
+                <option value="dnys">DNYS</option>
+                <option value="mphil">M.Phil</option>
+                <option value="phd">PhD (Doctor of Philosophy)</option>
+                <option value="dlitt">D.Litt</option>
+                <option value="dsc">D.Sc</option>
+                <option value="dpharma">D-Pharma</option>
+                <option value="bpharma">B-Pharma</option>
+                <option value="mpharma">M-Pharma</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    
+        <div class="form-group">
+            <label for="session">Session/Year *</label>
+            <select id="session" name="session" required>
+                <option value="">Select</option>
+                <option value="2022-2023">2022-2023</option>
+                <option value="2023-2024">2023-2024</option>
+                <option value="2024-2025">2024-2025</option>
+                <option value="2025-2026">2025-2026</option>
+                <option value="2026-2027">2026-2027</option>
+            </select>
+        </div>
+    
+        <h2>Personal Information</h2>
+        <div class="form-group">
+            <label>Gender *</label>
+            <div class="radio-group">
+                <input type="radio" name="gender" value="male" required> Male
+                <input type="radio" name="gender" value="female" required> Female
+                <input type="radio" name="gender" value="other" required> Other
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label>Date of Birth *</label>
+            <div class="form-row">
+                <select name="dob_month" required>
+                    <option value="">Month</option>
+                    <option value="jan">January</option>
+                    <option value="feb">February</option>
+                    <option value="mar">March</option>
+                    <option value="apr">April</option>
+                    <option value="may">May</option>
+                    <option value="jun">June</option>
+                    <option value="jul">July</option>
+                    <option value="aug">August</option>
+                    <option value="sep">September</option>
+                    <option value="oct">October</option>
+                    <option value="nov">November</option>
+                    <option value="dec">December</option>
+                </select>
+                <select name="dob_day" required>
+                    <option value="">Day</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select name="dob_year" id="dob_year" required>
+                    <option value="">Year</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label for="applicant-name">Name of Applicant *</label>
+            <input type="text" id="applicant-name" name="applicant_name" required>
+        </div>
+        <div class="form-group">
+            <label for="father-name">Father Name *</label>
+            <input type="text" id="father-name" name="father_name" required>
+        </div>
+        <div class="form-group">
+            <label for="mother-name">Mother Name *</label>
+            <input type="text" id="mother-name" name="mother_name" required>
+        </div>
+        <div class="form-group">
+            <label for="aadhar">Aadhar Number *</label>
+            <input type="text" id="aadhar" name="aadhar_number" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Id *</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Category *</label>
+            <div class="radio-group">
+                <input type="radio" name="category" value="sc" required> SC
+                <input type="radio" name="category" value="st" required> ST
+                <input type="radio" name="category" value="obc" required> OBC
+                <input type="radio" name="category" value="gen" required> GEN
+                <input type="radio" name="category" value="others" required> Others
+            </div>
+            <input type="text" id="category-others" name="category_others" placeholder="In Case of others, Specify"
+                >
+        </div>
+    
+        <div class="form-group">
+            <label for="nationality">Nationality *</label>
+            <input type="text" id="nationality" name="nationality" required>
+        </div>
+    
+        <div class="form-group">
+            <label>Domicile *</label>
+            <div class="radio-group">
+                <input type="radio" name="domicile" value="west_bengal" required> West Bengal
+                <input type="radio" name="domicile" value="maharashtra" required> Maharashtra
+                <input type="radio" name="domicile" value="other" required> Other
+            </div>
+            <input type="text" id="domicile-others" name="domicile_others" placeholder="In Case of others, Specify"
+                >
+        </div>
+    
+        <h2>Contact Details</h2>
+        <div class="form-group">
+            <label for="address">Permanent Address *</label>
+            <textarea id="address" name="permanent_address" required></textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="state">State *</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+            <div class="form-group">
+                <label for="pin">Pin Code *</label>
+                <input type="text" id="pin" name="pin_code" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Permanent Mobile Number *</label>
+            <input type="text" id="mobile" name="mobile_number" required>
+        </div>
+    
+        <h2>Qualifying Examination Details *</h2>
+        <table>
+            <tr>
+                <th>Examination</th>
+                <th>Percentage (%)</th>
+                <th>Subject/Stream</th>
+            </tr>
+            <tr>
+                <td>10th</td>
+                <td><input type="number" step="0.01" name="exam_10th_percentage" required></td>
+                <td><input type="text" name="exam_10th_stream" required></td>
+            </tr>
+            <tr>
+                <td>12th</td>
+                <td><input type="number" step="0.01" name="exam_12th_percentage" required></td>
+                <td><input type="text" name="exam_12th_stream" required></td>
+            </tr>
+            <tr>
+                <td>Graduation</td>
+                <td><input type="number" step="0.01" name="exam_graduation_percentage" required></td>
+                <td><input type="text" name="exam_graduation_stream" required></td>
+            </tr>
+            <tr>
+                <td>Post Graduation</td>
+                <td><input type="number" step="0.01" name="exam_postgrad_percentage" required></td>
+                <td><input type="text" name="exam_postgrad_stream" required></td>
+            </tr>
+        </table>
+    
+        <p class="note">*Note - Student may submit his / her passport size pic along with self attested academic documents
+            later on visiting the campus.</p>
+    
+        <h2>Declaration by Candidate</h2>
+        <p>I hereby declare that I have carefully read the instructions and all the information furnished by me are correct.
+        </p>
+    
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    </div>
+
+
+    <script>
+        const yearSelect = document.getElementById("dob_year");
+        const currentYear = new Date().getFullYear();
+        const startYear = 1950; // change as per your need
+
+        for (let year = currentYear; year >= startYear; year--) {
+            let option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        }
+    </script>
+</body>
+
+</html>
