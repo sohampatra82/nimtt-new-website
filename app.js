@@ -1,4 +1,4 @@
-require("dotenv").config(); //REQUIRE DOTENV
+require('dotenv').config(); //REQUIRE DOTENV
 
 const express = require("express"); //REQUIRE EXPRESS
 const app = express();
@@ -22,7 +22,8 @@ app.use(express.static(path.join(__dirname, "public"))); //USE STATIC FILES
 app.use(
   cors({
     origin: "https://www.nimtt.co.in",
-    methods: ["GET", "POST", "PUT", "DELETE"]
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 ); //USE CORS
 

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure sign up for Support Department">
+    <title>Sign-Up</title>
+    <link rel="shortcut icon"
+        href="https://ik.imagekit.io/7de5cntkw/1692626704665-photoaidcom-cropped%20(1).jpeg?updatedAt=1738048156918"
+        type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #e5e7eb 0%, #d1d5db 100%);
+            color: #111827;
+            overflow: auto;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1150px;
+            height: auto;
+            max-height: 545px;
+            margin: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .left-section {
+            flex: 1;
+            background: url('https://ik.imagekit.io/cbplhqesm/Refer%20Earn.png?updatedAt=1751523376748') center center no-repeat;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color:#302E2F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+
+        .logo {
+            max-width: 160px;
+            animation: scaleIn 1s ease-in-out;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            position: relative;
+            z-index: 1;
+        }
+
+        .right-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 32px;
+        }
+
+        .signup-panel {
+            width: 100%;
+            max-width: 360px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .signup-panel h2 {
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #111827;
+            letter-spacing: -0.3px;
+        }
+
+        .signup-panel p {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .signup-panel label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .signup-panel input[type="text"],
+        .signup-panel input[type="email"],
+        .signup-panel input[type="password"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 14px;
+            background-color: #f9fafb;
+            transition: all 0.3s ease;
+        }
+
+        .signup-panel input:focus {
+            border-color: #2b6cb0;
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+            background-color: #ffffff;
+            outline: none;
+        }
+
+        .signup-panel input.error {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+            background-color: #fef2f2;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6b7280;
+            font-size: 13px;
+            font-weight: 500;
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+
+        .toggle-password:hover {
+            color: #2b6cb0;
+        }
+
+        .signup-panel button {
+            width: 100%;
+            padding: 12px;
+            background: #FB641B;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-panel button:hover:not(:disabled) {
+            
+            transform: translateY(-1px);
+          
+        }
+
+        .signup-panel button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .signup-panel button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .signup-panel button.loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .signup-panel button.loading span {
+            visibility: hidden;
+        }
+
+        .extra {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .extra a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .extra a:hover {
+            color: #1a4971;
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 11px;
+            margin-top: 4px;
+            margin-bottom: 10px;
+            display: none;
+            text-align: left;
+            font-weight: 500;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-3px);
+            }
+
+            75% {
+                transform: translateX(3px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                max-height: none;
+                margin: 50px;
+                border-radius: 12px;
+            }
+
+            .left-section {
+                height: 150px;
+                flex: none;
+            }
+
+            .right-section {
+                padding: 24px;
+            }
+
+            .signup-panel {
+                max-width: 100%;
+            }
+
+            .signup-panel h2 {
+                font-size: 22px;
+            }
+
+            .signup-panel p {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+
+            .logo {
+                max-width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .right-section {
+                padding: 16px;
+            }
+
+            .signup-panel h2 {
+                font-size: 20px;
+            }
+
+            .signup-panel p {
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+
+            .signup-panel button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .signup-panel input[type="text"],
+            .signup-panel input[type="email"],
+            .signup-panel input[type="password"] {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+
+            .logo {
+                max-width: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-section">
+            
+        </div>
+        <div class="right-section">
+            <div class="signup-panel">
+                <h2>Get Started with Your Account</h2>
+                <p>Create your account to refer and earn😃</p>
+                <form id="signup-form" method="post" action="/">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username"">
+                   
+
+                    <label for=" email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" placeholder="Enter your password">
+
+                    </div>
+
+
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" id="confirm-password" name="confirm-password"
+                            placeholder="Confirm your password" aria-describedby="confirm-password-error">
+                        <span class="toggle-password" onclick="togglePassword('confirm-password')"></span>
+                    </div>
+
+
+                    <button type="submit" id="signup-button"><span>Sign Up</span></button>
+                </form>
+                <div class="extra">
+                    <p>Already have an account? <a href="sign-in.html">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

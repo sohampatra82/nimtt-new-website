@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard: Student Management</title>
+    <link rel="shortcut icon"
+        href="https://ik.imagekit.io/7de5cntkw/1692626704665-photoaidcom-cropped%20(1).jpeg?updatedAt=1738048156918"
+        type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e8eff7;
+            color: #1e2a44;
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #1e2a44 0%, #2a3b66 100%);
+            color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .logo {
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar .logo img {
+            width: 40px;
+            height: 40px;
+        
+        }
+
+        .sidebar nav {
+            flex: 1;
+            margin-top: 32px;
+        }
+
+        .sidebar nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 14px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            background: #3b82f6;
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 32px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 24px 32px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e2a44;
+        }
+
+        .form-container {
+            padding: 32px;
+            background: #f9fafb;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .form-container.hidden,
+        .student-details.hidden {
+            display: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 3;
+        }
+
+        .form-group label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e2a44;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #ffffff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+            outline: none;
+        }
+
+        .form-group input:disabled {
+            background: #f9fafb;
+            color: #6b7280;
+            cursor: not-allowed;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .photo-preview {
+            display: none;
+            max-width: 180px;
+            border-radius: 10px;
+            margin-top: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-preview:hover {
+            
+        }
+
+        .edit-section {
+            padding: 32px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: none;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .edit-section.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .edit-section .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .edit-section .search-bar label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e2a44;
+        }
+
+        .edit-section .search-input-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 450px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            background: #ffffff;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .edit-section .search-input-container:focus-within {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        .edit-section .search-bar input[type="text"] {
+            flex: 1;
+            padding: 14px 16px;
+            border: none;
+            font-size: 15px;
+            background: transparent;
+        }
+
+        .edit-section .search-bar input[type="text"]:focus {
+            outline: none;
+        }
+
+        .edit-section .search-bar input[type="text"]::placeholder {
+            color: #9ca3af;
+        }
+
+        .edit-section .edit-form-container {
+            display: none;
+        }
+
+        .edit-section .edit-form-container.active {
+            display: block;
+        }
+
+        .search-bar button,
+        .form-buttons button {
+            padding: 14px 28px;
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar button:hover
+         {
+            background: #1e3a8a;
+        
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    
+        .form-buttons button:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+            margin-top: 32px;
+        }
+
+        .form-buttons .edit-btn,
+        .form-buttons .submit-btn {
+            background: #3b82f6;
+        }
+
+        .form-buttons .edit-btn:hover,
+        .form-buttons .submit-btn:hover {
+            background: #1e3a8a;
+        }
+
+        .form-buttons .delete-btn {
+            background: #dc2626;
+        }
+
+        .form-buttons .delete-btn:hover {
+            background: #b91c1c;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 15px;
+            font-weight: 600;
+            position: relative;
+            max-width: 700px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 0.5s ease;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 2px solid #dc2626;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #15803d;
+            border: 1px solid #15803d;
+        }
+
+        .message-container .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 18px;
+            cursor: pointer;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .message-container .close-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .student-details {
+            padding: 32px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .student-details h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e2a44;
+            margin-bottom: 20px;
+        }
+
+        .student-details p {
+            font-size: 15px;
+            color: #374151;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .student-details img {
+            max-width: 220px;
+            border-radius: 12px;
+            margin-top: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      
+        }
+
+        .student-details img:hover {
+           
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.4s ease;
+        }
+
+        .modal-content h3 {
+            font-size: 20px;
+            color: #1e2a44;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 15px;
+            color: #374151;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .modal-content .confirm-btn,
+        .modal-content .cancel-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            margin: 0 10px;
+        }
+
+        .modal-content .confirm-btn {
+            background: #dc2626;
+            color: #ffffff;
+        }
+
+        .modal-content .confirm-btn:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+
+        .modal-content .cancel-btn {
+            background: #e2e8f0;
+            color: #1e2a44;
+        }
+
+        .modal-content .cancel-btn:hover {
+            background: #d1d5db;
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                padding: 24px;
+            }
+
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-group.full-width {
+                grid-column: span 2;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-bar .search-input-container {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                padding: 16px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .search-bar button,
+            .form-buttons button {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+            }
+
+            .message-container {
+                font-size: 14px;
+                padding: 14px;
+            }
+
+            .modal-content {
+                padding: 24px;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="https://ik.imagekit.io/7de5cntkw/1692626704665-photoaidcom-cropped%20(1).jpeg?updatedAt=1738048156918"
+                alt="Logo">
+            Admin Dashboard
+        </div>
+        <nav>
+            <a href="#" class="active">
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                Student Management
+            </a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <div class="header">
+                <h1>Student Management</h1>
+            </div>
+            <div class="form-container" id="mainFormContainer">
+                <form id="studentForm" enctype="multipart/form-data" action="/admin-dashboard" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="studentId">Student ID</label>
+                            <input type="text" id="studentId" name="studentId" placeholder="Enter Student ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherName">Father's Name</label>
+                            <input type="text" id="fatherName" name="fatherName" placeholder="Enter Father's Name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="university">University / Board</label>
+                            <input type="text" id="university" name="university" placeholder="Enter University or Board"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course</label>
+                            <input type="text" id="course" name="course" placeholder="Enter Course Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="enrollment">Enrollment Number</label>
+                            <input type="text" id="enrollment" name="enrollment" placeholder="Enter Enrollment Number"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="Enter Mobile Number" required
+                                pattern="[0-9]{10}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email ID</label>
+                            <input type="email" id="email" name="email" placeholder="Enter Email ID" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" placeholder="Enter Full Address" required></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="photo">Upload Photo</label>
+                            <input type="file" id="photo" name="photo" accept="image/*" required>
+                            <img id="photoPreview" class="photo-preview" alt="Photo Preview">
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="submit-btn">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                                Submit
+                            </button>
+                            <button type="button" id="editButton" class="edit-btn">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Edit
+                            </button>
+                        </div>
+                        <div id="messageContainer" class="form-group full-width"></div>
+                    </div>
+                </form>
+            </div>
+            <div id="editSection" class="edit-section">
+                <div class="search-bar">
+                    <label for="searchStudentId">Student ID</label>
+                    <div class="search-input-container">
+                        <input type="text" id="searchStudentId" placeholder="Enter Student ID to search" required>
+                        <button type="button" id="searchButton">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <div class="edit-form-container" id="editFormContainer">
+                    <form id="editForm" enctype="multipart/form-data">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="editStudentId">Student ID</label>
+                                <input type="text" id="editStudentId" name="studentId" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="editName">Name</label>
+                                <input type="text" id="editName" name="name" placeholder="Enter Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editFatherName">Father's Name</label>
+                                <input type="text" id="editFatherName" name="fatherName"
+                                    placeholder="Enter Father's Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editUniversity">University / Board</label>
+                                <input type="text" id="editUniversity" name="university"
+                                    placeholder="Enter University or Board" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editDob">Date of Birth</label>
+                                <input type="date" id="editDob" name="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editCourse">Course</label>
+                                <input type="text" id="editCourse" name="course" placeholder="Enter Course Name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editEnrollment">Enrollment Number</label>
+                                <input type="text" id="editEnrollment" name="enrollment"
+                                    placeholder="Enter Enrollment Number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editMobile">Mobile Number</label>
+                                <input type="tel" id="editMobile" name="mobile" placeholder="Enter Mobile Number"
+                                    required pattern="[0-9]{10}">
+                            </div>
+                            <div class="form-group">
+                                <label for="editEmail">Email ID</label>
+                                <input type="email" id="editEmail" name="email" placeholder="Enter Email ID" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="editAddress">Address</label>
+                                <textarea id="editAddress" name="address" placeholder="Enter Full Address"
+                                    required></textarea>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="editPhoto">Upload Photo</label>
+                                <input type="file" id="editPhoto" name="photo" accept="image/*">
+                                <img id="editPhotoPreview" class="photo-preview" alt="Photo Preview">
+                            </div>
+                            <div class="form-buttons">
+                                <button type="submit">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Update
+                                </button>
+                                <button type="button" class="delete-btn" id="deleteButton" disabled>
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    Delete
+                                </button>
+                            </div>
+                            <div id="editMessageContainer" class="form-group full-width"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="studentDetails" class="student-details"></div>
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-message"></p>
+                    <div>
+                        <button class="confirm-btn" id="modal-confirm">Confirm</button>
+                        <button class="cancel-btn" id="modal-cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
+        const studentForm = document.getElementById('studentForm');
+        const editButton = document.getElementById('editButton');
+        const editSection = document.getElementById('editSection');
+        const mainFormContainer = document.getElementById('mainFormContainer');
+        const studentDetails = document.getElementById('studentDetails');
+        const searchButton = document.getElementById('searchButton');
+        const searchStudentId = document.getElementById('searchStudentId');
+        const editFormContainer = document.getElementById('editFormContainer');
+        const editForm = document.getElementById('editForm');
+        const editPhotoInput = document.getElementById('editPhoto');
+        const editPhotoPreview = document.getElementById('editPhotoPreview');
+        const deleteButton = document.getElementById('deleteButton');
+        const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+
+        // Show modal for delete confirmation
+        const showModal = (title, message, onConfirm) => {
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            modal.style.display = 'flex';
+
+            const confirmBtn = document.getElementById('modal-confirm');
+            const cancelBtn = document.getElementById('modal-cancel');
+
+            const cleanup = () => {
+                modal.style.display = 'none';
+                confirmBtn.removeEventListener('click', confirmHandler);
+                cancelBtn.removeEventListener('click', cancelHandler);
+            };
+
+            const confirmHandler = () => {
+                onConfirm();
+                cleanup();
+            };
+
+            const cancelHandler = () => {
+                cleanup();
+            };
+
+            confirmBtn.addEventListener('click', confirmHandler);
+            cancelBtn.addEventListener('click', cancelHandler);
+        };
+
+        // Photo preview and size validation for main form
+        photoInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                if (file.size > MAX_FILE_SIZE) {
+                    displayMessage('Error: Image size exceeds 20MB!', 'error', 'messageContainer');
+                    this.value = '';
+                    photoPreview.style.display = 'none';
+                    return;
+                }
+                if (!file.type.startsWith('image/')) {
+                    displayMessage('Error: Please upload a valid image file!', 'error', 'messageContainer');
+                    this.value = '';
+                    photoPreview.style.display = 'none';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photoPreview.src = e.target.result;
+                    photoPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                photoPreview.style.display = 'none';
+            }
+        });
+
+        // Photo preview and size validation for edit form
+        editPhotoInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                if (file.size > MAX_FILE_SIZE) {
+                    displayMessage('Error: Image size exceeds 20MB!', 'error', 'editMessageContainer');
+                    this.value = '';
+                    editPhotoPreview.style.display = 'none';
+                    return;
+                }
+                if (!file.type.startsWith('image/')) {
+                    displayMessage('Error: Please upload a valid image file!', 'error', 'editMessageContainer');
+                    this.value = '';
+                    editPhotoPreview.style.display = 'none';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    editPhotoPreview.src = e.target.result;
+                    editPhotoPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                editPhotoPreview.style.display = 'none';
+            }
+        });
+
+        // Display message
+        const displayMessage = (message, type, containerId = 'messageContainer') => {
+            const messageContainer = document.getElementById(containerId);
+            messageContainer.innerHTML = `
+                <div class="message-container ${type}">
+                    ${message}
+                    <button class="close-btn">&times;</button>
+                </div>`;
+            const closeBtn = messageContainer.querySelector('.close-btn');
+            closeBtn.addEventListener('click', () => {
+                messageContainer.innerHTML = '';
+            });
+            setTimeout(() => {
+                messageContainer.innerHTML = '';
+            }, 5000);
+        };
+
+        // Display student data
+        const displayStudent = (studentData) => {
+            studentDetails.innerHTML = `
+                <h2>Student Details</h2>
+                <p><strong>Student ID:</strong> ${studentData.studentId}</p>
+                <p><strong>Name:</strong> ${studentData.name}</p>
+                <p><strong>Father's Name:</strong> ${studentData.fatherName}</p>
+                <p><strong>University:</strong> ${studentData.university}</p>
+                <p><strong>Course:</strong> ${studentData.course}</p>
+                <p><strong>Enrollment:</strong> ${studentData.enrollment}</p>
+                <p><strong>Date of Birth:</strong> ${studentData.dob}</p>
+                <p><strong>Mobile:</strong> ${studentData.mobile}</p>
+                <p><strong>Email:</strong> ${studentData.email}</p>
+                <p><strong>Address:</strong> ${studentData.address}</p>
+                ${studentData.photo ? `<img src="${studentData.photo}" alt="Student Photo">` : ''}
+            `;
+        };
+
+        // Populate edit form
+        const populateEditForm = (studentData) => {
+            document.getElementById('editStudentId').value = studentData.studentId || '';
+            document.getElementById('editName').value = studentData.name || '';
+            document.getElementById('editFatherName').value = studentData.fatherName || '';
+            document.getElementById('editUniversity').value = studentData.university || '';
+            document.getElementById('editDob').value = studentData.dob || '';
+            document.getElementById('editCourse').value = studentData.course || '';
+            document.getElementById('editEnrollment').value = studentData.enrollment || '';
+            document.getElementById('editMobile').value = studentData.mobile || '';
+            document.getElementById('editEmail').value = studentData.email || '';
+            document.getElementById('editAddress').value = studentData.address || '';
+            if (studentData.photo) {
+                editPhotoPreview.src = studentData.photo;
+                editPhotoPreview.style.display = 'block';
+            } else {
+                editPhotoPreview.style.display = 'none';
+            }
+            editForm.action = `/admin-dashboard/${studentData.studentId}`;
+            deleteButton.disabled = false;
+        };
+
+        // Reset edit form and section
+        const resetEditSection = () => {
+            editForm.reset();
+            editPhotoInput.value = ''; // Clear file input
+            editPhotoPreview.src = '';
+            editPhotoPreview.style.display = 'none';
+            searchStudentId.value = '';
+            deleteButton.disabled = true;
+            editForm.action = '';
+            editFormContainer.classList.remove('active');
+        };
+
+        // Fetch student data
+        const fetchStudent = async (studentId) => {
+            try {
+                console.log('Fetching student with ID:', studentId);
+                const response = await fetch(`/admin-dashboard/${studentId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Fetch error:', errorData);
+                    if (response.status === 404) {
+                        displayMessage('Error: Student not found with the provided ID!', 'error', 'editMessageContainer');
+                    } else {
+                        displayMessage(`Error: ${errorData.message || 'Failed to fetch student data'}`, 'error', 'editMessageContainer');
+                    }
+                    resetEditSection();
+                    return null;
+                }
+                const studentData = await response.json();
+                console.log('Fetched student data:', studentData);
+                displayMessage('Success: Student data retrieved successfully!', 'success-message', 'editMessageContainer');
+                displayStudent(studentData);
+                populateEditForm(studentData);
+                editFormContainer.classList.add('active');
+                return studentData;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                displayMessage('Error: Unable to connect to the server!', 'error', 'editMessageContainer');
+                resetEditSection();
+                return null;
+            }
+        };
+
+        // Main form submission
+        studentForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const studentData = {
+                studentId: formData.get('studentId').trim(),
+                name: formData.get('name').trim(),
+                fatherName: formData.get('fatherName').trim(),
+                university: formData.get('university').trim(),
+                dob: formData.get('dob'),
+                course: formData.get('course').trim(),
+                enrollment: formData.get('enrollment').trim(),
+                mobile: formData.get('mobile').trim(),
+                email: formData.get('email').trim().toLowerCase(),
+                address: formData.get('address').trim(),
+                photo: photoPreview.src || null
+            };
+
+            // Validate inputs
+            if (!studentData.studentId) {
+                displayMessage('Error: Student ID is required!', 'error');
+                return;
+            }
+            if (!studentData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                displayMessage('Error: Invalid email format!', 'error');
+                return;
+            }
+            if (!studentData.mobile.match(/^[0-9]{10}$/)) {
+                displayMessage('Error: Mobile number must be 10 digits!', 'error');
+                return;
+            }
+            if (!formData.get('photo')) {
+                displayMessage('Error: Please upload a valid photo!', 'error');
+                return;
+            }
+
+            try {
+                console.log('Sending create request');
+                const response = await fetch('/admin-dashboard', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Create error:', errorData);
+                    displayMessage(`Error: ${errorData.message || 'Failed to save student data'}`, 'error');
+                    return;
+                }
+
+                const result = await response.json();
+                console.log('Create success:', result);
+                displayMessage('Success: Student data saved successfully!', 'success-message');
+                displayStudent(result.student || studentData); // Use backend response if available
+                this.reset();
+                photoPreview.style.display = 'none';
+            } catch (error) {
+                console.error('Create error:', error);
+                displayMessage('Error: Unable to connect to the server!', 'error');
+            }
+        });
+
+        // Edit button click to toggle edit section
+        editButton.addEventListener('click', () => {
+            editSection.classList.add('active');
+            mainFormContainer.classList.add('hidden');
+            studentDetails.classList.add('hidden');
+            resetEditSection();
+        });
+
+        // Search button click
+        searchButton.addEventListener('click', async () => {
+            const studentId = searchStudentId.value.trim();
+            if (!studentId) {
+                displayMessage('Error: Please enter a Student ID!', 'error', 'editMessageContainer');
+                return;
+            }
+            await fetchStudent(studentId);
+        });
+
+        // Search on Enter key
+        searchStudentId.addEventListener('keypress', async (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const studentId = searchStudentId.value.trim();
+                if (!studentId) {
+                    displayMessage('Error: Please enter a Student ID!', 'error', 'editMessageContainer');
+                    return;
+                }
+                await fetchStudent(studentId);
+            }
+        });
+
+        // Edit form submission
+        editForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const studentId = document.getElementById('editStudentId').value.trim();
+            formData.set('studentId', studentId); // Ensure studentId is included
+
+            const studentData = {
+                studentId: studentId,
+                name: formData.get('name').trim(),
+                fatherName: formData.get('fatherName').trim(),
+                university: formData.get('university').trim(),
+                dob: formData.get('dob'),
+                course: formData.get('course').trim(),
+                enrollment: formData.get('enrollment').trim(),
+                mobile: formData.get('mobile').trim(),
+                email: formData.get('email').trim().toLowerCase(),
+                address: formData.get('address').trim(),
+                photo: null // Will be updated with backend response
+            };
+
+            // Validate inputs
+            if (!studentData.studentId) {
+                displayMessage('Error: Student ID is required!', 'error', 'editMessageContainer');
+                return;
+            }
+            if (!studentData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                displayMessage('Error: Invalid email format!', 'error', 'editMessageContainer');
+                return;
+            }
+            if (!studentData.mobile.match(/^[0-9]{10}$/)) {
+                displayMessage('Error: Mobile number must be 10 digits!', 'error', 'editMessageContainer');
+                return;
+            }
+            if (!studentData.name || !studentData.fatherName || !studentData.university || !studentData.course || !studentData.enrollment || !studentData.address || !studentData.dob) {
+                displayMessage('Error: All fields are required!', 'error', 'editMessageContainer');
+                return;
+            }
+
+            try {
+                console.log('Sending update request for studentId:', studentId);
+                console.log('FormData contents:');
+                for (let [key, value] of formData.entries()) {
+                    console.log(`${key}:`, value instanceof File ? value.name : value);
+                }
+
+                const response = await fetch(`/admin-dashboard/${studentId}`, {
+                    method: 'PUT',
+                    body: formData
+                });
+
+                console.log('Update response status:', response.status);
+                const textResponse = await response.text();
+                console.log('Update response body:', textResponse);
+
+                let result;
+                try {
+                    result = JSON.parse(textResponse);
+                } catch (e) {
+                    console.error('Error parsing response JSON:', e);
+                    displayMessage('Error: Invalid response from server', 'error', 'editMessageContainer');
+                    return;
+                }
+
+                if (!response.ok) {
+                    console.error('Update error:', result);
+                    if (response.status === 404) {
+                        displayMessage('Error: Student not found', 'error', 'editMessageContainer');
+                    } else if (response.status === 400) {
+                        displayMessage(`Error: ${result.error || 'Invalid data provided'}`, 'error', 'editMessageContainer');
+                    } else {
+                        displayMessage(`Error: ${result.message || 'Failed to update student data'}`, 'error', 'editMessageContainer');
+                    }
+                    return;
+                }
+
+                console.log('Update success:', result);
+                // Use backend-provided student data for display
+                const updatedStudent = result.student || studentData;
+                updatedStudent.photo = result.student?.photo || editPhotoPreview.src || studentData.photo;
+                displayMessage('Success: Student data updated successfully!', 'success-message', 'editMessageContainer');
+                displayStudent(updatedStudent);
+                resetEditSection();
+                editSection.classList.remove('active');
+                mainFormContainer.classList.remove('hidden');
+                studentDetails.classList.remove('hidden');
+            } catch (error) {
+                console.error('Update error:', error);
+                displayMessage('Error: Unable to connect to the server!', 'error', 'editMessageContainer');
+            }
+        });
+
+        // Delete button click
+        deleteButton.addEventListener('click', () => {
+            const studentId = document.getElementById('editStudentId').value;
+            showModal('Confirm Deletion', 'Are you sure you want to delete this student? This action cannot be undone.', async () => {
+                try {
+                    console.log('Sending delete request for studentId:', studentId);
+                    const response = await fetch(`/admin-dashboard/${studentId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('Delete error:', errorData);
+                        if (response.status === 404) {
+                            displayMessage('Error: Student not found', 'error', 'editMessageContainer');
+                        } else {
+                            displayMessage(`Error: ${errorData.message || 'Failed to delete student'}`, 'error', 'editMessageContainer');
+                        }
+                        return;
+                    }
+
+                    console.log('Delete success');
+                    displayMessage('Success: Student data deleted successfully!', 'success-message', 'editMessageContainer');
+                    resetEditSection();
+                    editSection.classList.remove('active');
+                    mainFormContainer.classList.remove('hidden');
+                    studentDetails.innerHTML = '';
+                    studentDetails.classList.remove('hidden');
+                } catch (error) {
+                    console.error('Delete error:', error);
+                    displayMessage('Error: Unable to connect to the server!', 'error', 'editMessageContainer');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
