@@ -9,7 +9,7 @@ const UserModel = require("./model/user.model"); //REQUIRE USER MODEL
 const CenterModel = require("./model/center.model"); //REQUIRE CENTER MODEL
 const StaffModel = require("./model/staff.model"); //REQUIRE STAFF MODEL
 const AdminModel = require("./model/admin.model"); //REQUIRE ADMIN MODEL
-const cors = require("cors"); //REQUIRE CORS
+// const cors = require("cors");
 const path = require("path"); //REQUIRE PATH
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public"))); //USE STATIC FILES
 //     credentials: true
 //   })
 // ); //USE CORS
-app.use(cors()); 
+// app.use(cors()); 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "home.html"));
 });
