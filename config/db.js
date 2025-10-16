@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const dbConnect = mongoose
-  .connect("mongodb://0.0.0.0/newstundetlogin")
-  .then(() => {
-    console.log("Nimtt Database is ready");
+const dbConnect = mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log("Nimtt Database is ready ... ");
   });

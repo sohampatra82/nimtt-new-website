@@ -1,4 +1,4 @@
-require('dotenv').config(); //REQUIRE DOTENV
+require('dotenv').config();
 
 const express = require("express"); //REQUIRE EXPRESS
 const app = express();
@@ -19,14 +19,14 @@ app.set("view engine", "ejs"); //SET VIEW ENGINE TO EJS
 app.use(express.json()); //USE JSON
 app.use(express.urlencoded({ extended: true })); //USE URL ENCODED
 app.use(express.static(path.join(__dirname, "public"))); //USE STATIC FILES
-app.use(
-  cors({
-    origin: "https://www.nimtt.co.in",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  })
-); //USE CORS
-
+// app.use(
+//   cors({
+//     origin: "https://www.nimtt.co.in",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true
+//   })
+// ); //USE CORS
+app.use(cors()); 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "home.html"));
 });
