@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 
+
 const express = require("express"); //REQUIRE EXPRESS
 const app = express();
 // const mongoose = require("mongoose"); 
@@ -12,6 +13,9 @@ const StaffModel = require("./model/staff.model"); //REQUIRE STAFF MODEL
 const AdminModel = require("./model/admin.model"); //REQUIRE ADMIN MODEL
 // const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+const multer = require("multer");
 const { body, validationResult } = require("express-validator"); //REQUIRE EXPRESS VALIDATOR
 const path = require("path"); //REQUIRE PATH
 const nodemailer = require("nodemailer");
