@@ -1,8 +1,9 @@
-require('dotenv').config();
+require('dotenv').config()
+
 
 const express = require("express"); //REQUIRE EXPRESS
 const app = express();
-const mongoose = require("mongoose"); //REQUIRE MONGOOSE
+// const mongoose = require("mongoose"); 
 const dbConnect = require("./config/db"); //REQUIRE DB CONNECT
 const adminDashboardModel = require("./model/adminDashboard.model");
 const UserModel = require("./model/user.model"); //REQUIRE USER MODEL
@@ -10,6 +11,8 @@ const CenterModel = require("./model/center.model"); //REQUIRE CENTER MODEL
 const StaffModel = require("./model/staff.model"); //REQUIRE STAFF MODEL
 const AdminModel = require("./model/admin.model"); //REQUIRE ADMIN MODEL
 // const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const { body, validationResult } = require("express-validator"); //REQUIRE EXPRESS VALIDATOR
 const path = require("path"); //REQUIRE PATH
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
@@ -118,11 +121,11 @@ app.get("/online-admission", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "online-admission.html"));
 });
 
-const { body, validationResult } = require("express-validator"); //REQUIRE EXPRESS VALIDATOR
+
 const bcrypt = require("bcrypt"); //REQUIRE BCRYPT FOR HASHING PASSWORDS
 const { get } = require("http");
 const { isLength } = require("validator");
-const jwt = require("jsonwebtoken"); //REQUIRE JWT FOR AUTHENTICATION
+
 
 // ALL ADMIN DASHBOARD SCHEMAS
 
@@ -517,7 +520,7 @@ app.post(
           username: Employeedata.username,
           email: Employeedata.email
         },
-        process.env.JWT_SECRET
+     process.env.JWT_SECRET,
       );
 
       // Set token in cookie and show success message
