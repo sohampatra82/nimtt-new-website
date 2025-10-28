@@ -514,8 +514,13 @@ app.post(
       }
 
       // Generate JWT token
-      const token = jwt.sign({ UserID: Employeedata._id, username: Employeedata.username, email: Employeedata.email },
-        "Max-support"
+      const token = jwt.sign(
+        {
+          UserID: Employeedata._id,
+          username: Employeedata.username,
+          email: Employeedata.email
+        },
+     process.env.JWT_SECRET,
       );
 
       // Set token in cookie and show success message
@@ -772,7 +777,7 @@ app.post(
           username: Employeedata.username,
           email: Employeedata.email
         },
-        "Max-support"
+        process.env.JWT_SECRET
       );
 
       // Set token in cookie and show success message
@@ -1029,7 +1034,7 @@ app.post(
           username: Employeedata.username,
           email: Employeedata.email
         },
-        "Max-support"
+        process.env.JWT_SECRET
       );
 
       // Set token in cookie and show success message
@@ -1286,7 +1291,7 @@ app.post(
           username: Employeedata.username,
           email: Employeedata.email
         },
-        "Max-support"
+        process.env.JWT_SECRET
       );
 
       // Set token in cookie and show success message
@@ -1968,7 +1973,7 @@ app.post("/online-admission", (req, res) => {
   });
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port number http://localhost:${PORT}`); //LOG PORT
 });
