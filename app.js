@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 
-
 const express = require("express"); //REQUIRE EXPRESS
 const app = express();
 // const mongoose = require("mongoose"); 
@@ -34,96 +33,145 @@ app.use(express.static(path.join(__dirname, "public"))); //USE STATIC FILES
 //   })
 // ); //USE CORS
 // app.use(cors()); 
+
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "home.html"));
+  res.render("home");
 });
 app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "home.html"));
+  res.render("home");
 });
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "about.html"));
+  res.render("about");
 });
 app.get("/contact-us", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "contact-us.html"));
+  res.render("contact-us");
 });
 app.get("/autonomous-course", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "autonomous-course.html"));
+  res.render("autonomous-course");
 });
 app.get("/facilities", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "facilities.html"));
+  res.render("facilities");
 });
 app.get("/foco-model", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "foco-model.html"));
+  res.render("foco-model");
 });
 app.get("/foreign-university-course", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "public", "foreign-university-course.html")
-  );
+  res.render("foreign-university-course");
 });
 app.get("/indian-university-course", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "indian-university-course.html"));
+  res.render("indian-university-course");
 });
 
 app.get("/rules", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "rules.html"));
+  res.render("rules");
 });
 app.get("/student-loan", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "student-loan.html"));
+  res.render("student-loan");
 });
 app.get("/terms-and-condition", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "terms-and-condition.html"));
+  res.render("terms-and-condition");
 });
 app.get("/student-login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "student-login.html"));
+  res.render("student-login");
 });
 app.get("/student-signup", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "student-signup.html"));
+  res.render("student-signup");
 });
 app.get("/refer-and-earn", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "refer-and-earn.html"));
+  res.render("refer-and-earn");
 });
 app.get("/sign-in", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "sign-in.html"));
+  res.render("sign-in");
 });
 app.get("/apply-for-job", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "apply-for-job.html"));
+  res.render("apply-for-job");
 });
 app.get("/student-dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "student-dashboard.html"));
+  res.render("student-dashboard");
 });
 app.get("/admin-dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "admin-dashboard.html"));
+  res.render("admin-dashboard");
 });
-app.get("/join-as-phd-supervisior", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "join-as-PhD-supervisor.html"));
+app.get("/join-as-phd-supervisor", (req, res) => {
+  res.render("join-as-PhD-supervisor");
 });
 app.get("/join-faculty", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "join-faculty.html"));
+  res.render("join-faculty");
 });
 app.get("/center-login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "center-login.html"));
+  res.render("center-login");
 });
 app.get("/center-signup", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "center-signup.html"));
+  res.render("center-signup");
 });
 app.get("/staff-signup", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "staff-signup.html"));
+  res.render("staff-signup");
 });
 app.get("/staff-login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "staff-login.html"));
+  res.render("staff-login");
 });
 app.get("/admin-signup", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "admin-signup.html"));
+  res.render("admin-signup");
 });
 app.get("/admin-login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "admin-login.html"));
+  res.render("admin-login");
 });
 app.get("/payment-section", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "payment-section.html"));
+  res.render("payment-section");
 });
 app.get("/online-admission", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "online-admission.html"));
+  res.render("online-admission");
 });
+app.get("/assiociate-member", (req, res) => {
+  res.render("assiociate-member");
+});
+
+app.get("/celebrate-with-us", (req, res) => {
+  res.render("celebrate-with-us");
+});
+app.get("/corporate-member", (req, res) => {
+  res.render("corporate-member");
+});
+
+app.get("/faq", (req, res) => {
+  res.render("faq");
+});
+
+app.get("/life-member", (req, res) => {
+  res.render("life-member");
+});
+app.get("/premium-member", (req, res) => {
+  res.render("premium-member");
+});
+app.get("/privacy-and-policy", (req, res) => {
+  res.render("privacy-and-policy");
+});
+app.get("/publish-your-article", (req, res) => {
+  res.render("publish-your-article");
+});
+app.get("/rules", (req, res) => {
+  res.render("rules");
+});
+app.get("/sponsorship-a-child-with-us", (req, res) => {
+  res.render("sponsorship-a-child-with-us");
+});
+app.get("/student-scholarship", (req, res) => {
+  res.render("student-scholarship");
+});
+app.get("/student-sponsorship", (req, res) => {
+  res.render("student-sponsorship");
+});
+app.get("/terms-and-condition", (req, res) => {
+  res.render("terms-and-condition");
+});
+
+
+
+
+
+
+
 
 
 const bcrypt = require("bcrypt"); //REQUIRE BCRYPT FOR HASHING PASSWORDS
